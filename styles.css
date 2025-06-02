@@ -31,7 +31,7 @@ main {
   padding: 2rem;              /* Inner spacing */
   background-color: #D4A6D1;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);  /* optional shadow for contrast */
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);  /* shadow for contrast */
   padding-bottom: 100%;
 }
 
@@ -64,13 +64,10 @@ main {
 }
 
 .card {
-    width: 100px;
-    height: 130px;
+    width: 110px;
+    height: 150px;        /* deleted redundacy double up with width, height and position*/
     position: relative;
-    width: 100px;
-    height: 130px;
-    position: relative;
-    perspective: 800px;             /* For 3D depth effect */
+    perspective: 800px;        /* For 3D depth effect */
 }
 
 .card-front,
