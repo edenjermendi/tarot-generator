@@ -90,39 +90,36 @@ const tarotDeck = [
   }
 ];
 
+//new organised logic to keep adding definiton below eachother, and have card display name
 const cards = document.querySelectorAll(".card");
-
-//selects all cards, loops through and sets up click function
-cards.forEach((card) => {
-  card.addEventListener("click", () => {
-    // Flip logic or assign card meaning here
-    card.classList.toggle("flipped");
-  });
-});
-
 const cardFronts = document.querySelectorAll(".card-front");
 const cardBacks = document.querySelectorAll(".card-back");
 const messageBox = document.getElementById("card-message");
 
-const shuffledDeck = tarotDeck.sort(() => 0.5 - Math.random()); // Shuffle the deck
-const selectedCards = shuffledDeck.slice(0, 3); 
+const shuffledDeck = tarotDeck.sort(() => 0.5 - Math.random());
+const selectedCards = shuffledDeck.slice(0, 3);
 
-// Store the currently shown definitions by card
+const revealedCards = new Set(); // Track which cards have been revealed
+
+// Assign names and set up click logic
 selectedCards.forEach((cardData, index) => {
   if (cardFronts[index] && cardBacks[index]) {
-    cardFronts[index].textContent = "?"; 
-    cardBacks[index].textContent = "";
+    cardFronts[index].textContent = "?";
+    cardBacks[index].textContent = ""; // leave blank for now
+
+    cards[index].addEventListener("click", () => {
+      if (!revealedCards.has(index)) {
+        cards[index].classList.add("flipped");
+        cardBacks[index].textContent = cardData.cardName;
+
+        const definition = document.createElement("p");
+        definition.textContent = `${cardData.cardName}: ${cardData.cardMeaning}`;
+        messageBox.appendChild(definition);
+
+        revealedCards.add(index);
+      }
+    });
   }
-   // Add event listener for flip + meaning reveal
-  cards[index].addEventListener("click", () => {
-    cards[index].classList.toggle("flipped");
-
-    // Update the front with the card name
-    cardFronts[index].textContent = cardData.cardName;
-
-    // Show the meaning in the message box
-    messageBox.textContent = cardData.cardMeaning;
-  });
 });
 
 console.log("Assigned cards:",selectedCards); // for later (assigning cards visually)
