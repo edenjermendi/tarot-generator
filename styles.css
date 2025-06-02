@@ -1,0 +1,112 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+    background-color: #45425A;
+    font-family: sans-serif;
+    padding: 10px;
+    color: white;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 4px;
+    margin-top: 8px;
+}
+
+p {
+    font-size: 1rem;
+    color: #d9d9d9;
+    margin-bottom: 35px;
+}
+
+main {
+  width: 100%;
+  max-width: 700px;           /* Limits card width on large screens */
+  margin: 0 auto;             /* Horizontally center */
+  padding: 2rem;              /* Inner spacing */
+  background-color: #D4A6D1;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);  /* optional shadow for contrast */
+  padding-bottom: 100%;
+}
+
+/* media query for mobile cohesiveness */
+@media (max-width: 600px) {
+  main {
+    padding: 1rem;
+    max-width: 95%;
+  }
+
+  .card {
+    width: 80px;
+    height: 110px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+}
+
+.card-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.card {
+    width: 100px;
+    height: 130px;
+    position: relative;
+    width: 100px;
+    height: 130px;
+    position: relative;
+    perspective: 800px;             /* For 3D depth effect */
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    top: 0; left: 0;                /* span the full card area */
+    width: 100%;
+    height: 100%;
+
+    display: flex;                  /* center the “?” or card name */
+    align-items: center;
+    justify-content: center;
+   
+
+    background-color: #EDDFEF;
+    color: black;
+    border: 2px solid #B298DC;
+    border-radius: 8px;
+    font-size: large;
+
+    backface-visibility: hidden;
+    transition: transform 0.6 ease;
+}
+
+.card-front {
+  transform: rotateY(0deg);       /* card facing user */
+}
+
+.card-back {
+  transform: rotateY(180deg);     /* card turned away by default */
+}
+
+.card.flipped .card-front {
+  transform: rotateY(-180deg);    /* flips “front” around */
+}
+
+.card.flipped .card-back {
+  transform: rotateY(0deg);       /* brings “back” face-up */
+}
