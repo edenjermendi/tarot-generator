@@ -122,4 +122,24 @@ selectedCards.forEach((cardData, index) => {
   }
 });
 
-console.log("Assigned cards:",selectedCards); // for later (assigning cards visually)
+//reset button logic
+document.getElementById("reset-button").addEventListener("click", () => {
+  // Clear card flips
+  cards.forEach((card) => card.classList.remove("flipped"));
+
+  // Reset card front/back text
+  cardFronts.forEach(front => front.textContent = "?");
+  cardBacks.forEach(back => back.textContent = "");
+
+  // Clear definitions
+  messageBox.innerHTML = "";
+
+  // Reset tracking set
+  revealedCards.clear();
+
+  // Reshuffle cards
+  const reshuffled = tarotDeck.sort(() => 0.5 - Math.random()).slice(0, 3);
+  selectedCards.splice(0, selectedCards.length, ...reshuffled);
+
+  console.log("Deck reshuffled:", selectedCards);
+});

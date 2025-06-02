@@ -123,3 +123,19 @@ main {
   margin: 0.5rem 0;
   text-align: left;
 }
+
+#reset-button {
+  margin-top: 2rem;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #B298DC;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#reset-button:hover {
+  background-color: #8a73c2;
+}
