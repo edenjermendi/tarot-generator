@@ -40,10 +40,12 @@ function assignCards() {
   revealedCards.clear();
   messageBox.innerHTML = "";
 
-    cards.forEach((card, index) => {
+  
+  cards = document.querySelectorAll(".card");
+
+  cards.forEach((card, index) => {
     const newCard = card.cloneNode(true);
-    card.parentNode.replaceChild(newCard, card); // safer replacement
-    cards[index] = newCard;
+    card.parentNode.replaceChild(newCard, card);
 
     const cardFront = newCard.querySelector(".card-front");
     const cardBack = newCard.querySelector(".card-back");
@@ -51,13 +53,14 @@ function assignCards() {
     // Reset visuals
     newCard.classList.remove("flipped");
     cardFront.textContent = "?";
-    cardBack.textContent = "";
+    cardBack.textContent = ""; // FINALYYY this applies correctly
 
     // Flip & reveal logic
     newCard.addEventListener("click", () => {
       if (!revealedCards.has(index)) {
         newCard.classList.add("flipped");
         cardBack.textContent = selectedCards[index].cardName;
+
         const definition = document.createElement("p");
         definition.textContent = `${selectedCards[index].cardName}: ${selectedCards[index].cardMeaning}`;
         messageBox.appendChild(definition);
