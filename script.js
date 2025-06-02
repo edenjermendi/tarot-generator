@@ -100,7 +100,29 @@ cards.forEach((card) => {
   });
 });
 
-const shuffledDeck = tarotDeck.sort(() => 0.5 - Math.random()); // Shuffle the deck
-const selectedCards = shuffledDeck.slice(0, 3); // Pick the first 3 cards
+const cardFronts = document.querySelectorAll(".card-front");
+const cardBacks = document.querySelectorAll(".card-back");
+const messageBox = document.getElementById("card-message");
 
-console.log(selectedCards); // for later (assigning cards visually)
+const shuffledDeck = tarotDeck.sort(() => 0.5 - Math.random()); // Shuffle the deck
+const selectedCards = shuffledDeck.slice(0, 3); 
+
+// Store the currently shown definitions by card
+selectedCards.forEach((cardData, index) => {
+  if (cardFronts[index] && cardBacks[index]) {
+    cardFronts[index].textContent = "?"; 
+    cardBacks[index].textContent = "";
+  }
+   // Add event listener for flip + meaning reveal
+  cards[index].addEventListener("click", () => {
+    cards[index].classList.toggle("flipped");
+
+    // Update the front with the card name
+    cardFronts[index].textContent = cardData.cardName;
+
+    // Show the meaning in the message box
+    messageBox.textContent = cardData.cardMeaning;
+  });
+});
+
+console.log("Assigned cards:",selectedCards); // for later (assigning cards visually)

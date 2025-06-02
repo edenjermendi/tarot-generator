@@ -107,3 +107,14 @@ main {
 .card.flipped .card-back {
   transform: rotateY(0deg);       /* brings “back” face-up */
 }
+
+#card-message {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: white;
+  min-height: 60px;
+  padding: 1rem;
+  background-color: #5e3a5a;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.2);
+}
